@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.lambtoncollege.buildmypc.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_assembled"
+        android:name="com.lambtoncollege.buildmypc.ui.assembled.AssembledFragment"
+        android:label="Assembled"
+        tools:layout="@layout/fragment_assembled" />
+
+    <fragment
+        android:id="@+id/nav_wishlist"
+        android:name="com.lambtoncollege.buildmypc.ui.wishlist.WishlistFragment"
+        android:label="Wishlist"
+        tools:layout="@layout/fragment_wishlist" />
+
+    <fragment
+        android:id="@+id/nav_aboutUs"
+        android:name="com.lambtoncollege.buildmypc.ui.aboutus.AboutUsFragment"
+        android:label="About Us"
+        tools:layout="@layout/fragment_aboutus" />
+
+    <fragment
+        android:id="@+id/nav_cart"
+        android:name="com.lambtoncollege.buildmypc.ui.cart.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/nav_brandlist"
+        android:name="com.lambtoncollege.buildmypc.ui.Brand.BrandFragment"
+        android:label="Brand List"
+        tools:layout="@layout/fragment_brand" />
+    <fragment
+        android:id="@+id/nav_feedback"
+        android:name="com.lambtoncollege.buildmypc.ui.feedback.FeedbackFragment"
+        android:label="FeedBack"
+        tools:layout="@layout/feedback_fragment" />
+</navigation>

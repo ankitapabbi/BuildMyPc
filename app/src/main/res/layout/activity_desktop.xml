@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".LaptopActivity">
+    <RelativeLayout
+        android:id="@+id/bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+
+        android:background="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true">
+
+        <Button
+            android:id="@+id/totalcost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculate"
+            android:layout_alignParentLeft="true"
+            android:textSize="15sp"
+            android:background="@android:color/transparent"
+            android:textColor="#fff"/>
+
+        <TextView
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:textColor="#ffffff"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:text="Desktop"/>
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:layout_alignParentRight="true"
+            android:textSize="15sp"
+            android:background="@android:color/transparent"
+            android:textColor="#fff"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar"
+        android:layout_marginBottom="50dp">
+
+        <LinearLayout
+            android:layout_margin="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:background="#ECECEC"
+    android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processor"/>
+</LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioGroup
+                    android:id="@+id/rprocessor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/proRadio1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Intel Core i5"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:layout_below="@+id/proRadio1"
+                        android:id="@+id/proRadio2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Intel Core i7"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+
+                    <RadioButton
+                        android:id="@+id/proRadio3"
+                        android:layout_below="@+id/proRadio2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Intel Core i9"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                </RadioGroup>
+
+
+                <TextView
+                    android:id="@+id/cost1"
+                    android:layout_alignParentRight="true"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:layout_margin="2dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$250"/>
+                <TextView
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentRight="true"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:layout_margin="2dp"
+                    android:id="@+id/cost2"
+                    android:layout_below="@+id/cost1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$300"/>
+
+
+                <TextView
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:layout_margin="2dp"
+                    android:id="@+id/cost3"
+                    android:layout_below="@+id/cost2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$320"/>
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8D8B8B"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ECECEC"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processor Generation"/>
+        </LinearLayout>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <RadioGroup
+                    android:id="@+id/rprocessorgen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <RadioButton
+                        android:id="@+id/progenRadio1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="9th Generation"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+                <RadioButton
+                        android:layout_below="@+id/progenRadio1"
+                        android:id="@+id/progenRadio2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="10th Generation"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+                </RadioGroup>
+                <TextView
+                    android:id="@+id/cost4"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$0"/>
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:id="@+id/cost5"
+                    android:layout_below="@+id/cost4"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$0"/>
+                </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8D8B8B"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ECECEC"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RAM"/>
+        </LinearLayout>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioGroup
+                        android:id="@+id/rram"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/ramRadio1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="8GB RAM"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/ramRadio2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="16GB RAM"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/ramRadio3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="32GB RAM"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+            </RadioGroup>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="$80"/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="$140"/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:text="$220"/>
+
+                </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8D8B8B"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ECECEC"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Storage Drive Type"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/ssd"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="SSD"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <Button
+                    android:id="@+id/hdd"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="HDD"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <Button
+                    android:id="@+id/dual"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Both"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@color/colorPrimaryDark"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/storageTypeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Storage Type"
+                android:textColor="#000"
+                android:visibility="gone"
+                android:textSize="20sp"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/storages">
+
+                <RadioButton
+                    android:id="@+id/storage1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+                <RadioButton
+                    android:id="@+id/storage2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+                <RadioButton
+                    android:id="@+id/storage3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+                <RadioButton
+                    android:id="@+id/storage4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8D8B8B"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ECECEC"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Graphic Card"/>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/nvidia"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="NVIDIA"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@color/colorPrimaryDark"/>
+                <Button
+                    android:id="@+id/amd"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="AMD"
+                    android:background="@drawable/radio_selector"
+                    android:textColor="@color/colorPrimaryDark"/>
+
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/grapgics">
+
+                <RadioButton
+                    android:id="@+id/graphic1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+                <RadioButton
+                    android:id="@+id/graphic2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+                <RadioButton
+                    android:id="@+id/graphic3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+                <RadioButton
+                    android:id="@+id/graphic4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+                <RadioButton
+                    android:id="@+id/graphic5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+                <RadioButton
+                    android:id="@+id/graphic6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:text="xyz"/>
+
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8D8B8B"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ECECEC"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Power Supply"/>
+        </LinearLayout>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioGroup
+                        android:id="@+id/rpower"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/powerRadio1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Corsair AX850&#xA; Best PSU: Up to 850 Watts"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/powerRadio2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Corsair AX1000&#xA; Best PSU: Up to 1,000 Watts"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/powerRadio3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Corsair AX1600i&#xA; Best PSU Above 1000 Watts"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+                    </RadioGroup>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"/>
+                </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8D8B8B"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ECECEC"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Network Card"/>
+        </LinearLayout>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <RadioGroup
+                        android:id="@+id/rnetwork"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/networkRadio1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="StarTech ST1000BT32"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/networkRadio2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Intel PWLA8391GT PRO-1000"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/networkRadio3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="TP-LINK Archer T9E AC1900"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+            </RadioGroup>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                       android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"/>
+                </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#8D8B8B"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ECECEC"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:textSize="22sp"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cabinet"/>
+        </LinearLayout>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="50dp">
+                    <RadioGroup
+                        android:id="@+id/rcabinate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <RadioButton
+                        android:id="@+id/cabinateRadio1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Corsair Carbide&#xA; Series CC-9011050-WW&#xA; Mid-Tower &#xA;Steel Gaming Case"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/cabinateRadio2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Circle CC 839&#xA; Professional Gaming Cabinet"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+
+                    <RadioButton
+                        android:id="@+id/cabinateRadio3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="Antec NX200&#xA; Mid Tower&#xA; Gaming Cabine"
+                        android:textSize="20sp"
+                        android:layout_margin="5dp">
+                    </RadioButton>
+            </RadioGroup>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"/>
+                    <TextView
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_alignParentRight="true"
+                       android:layout_alignParentBottom="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="$0"/>
+                </RelativeLayout>
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/cart"
+            android:background="#FF9800"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add To Cart"/>
+        <Button
+            android:id="@+id/wishlist"
+            android:background="#4CAF50"
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add to Wishlist"/>
+    </LinearLayout>
+
+</RelativeLayout>
