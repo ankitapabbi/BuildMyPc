@@ -15,6 +15,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lambtoncollege.buildmypc.utilities.BuildLaptopDatabase;
+
 public class LaptopActivity extends AppCompatActivity {
 
     AppCompatRadioButton screenRadio1,screenRadio2,screenRadio3,stypeRadio1,stypeRadio2;
@@ -26,10 +28,14 @@ public class LaptopActivity extends AppCompatActivity {
 
     RadioGroup rscreen,rdisplay,rstype,rprocessor,rprocessorgen,rram,storages,grapgics;
     Button ssd,hdd,dual,nvidia,amd,clear,totalcost,cart,wishlist;
+
+    String screenSize,display,screenType,processor,processorgen,ram,storage,graphic;
+    BuildLaptopDatabase bld;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_laptop);
+        bld = new BuildLaptopDatabase(getApplicationContext());
 
         storageTypeText = (TextView)findViewById(R.id.storageTypeText);
         totalcost = (Button)findViewById(R.id.totalcost);
@@ -196,8 +202,29 @@ public class LaptopActivity extends AppCompatActivity {
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Add to cart code
+                if(validationCheck()) {
+                    bld.open();
+                    bld.save(screenSize,display,screenType,processor, processorgen, ram, storage, graphic);
+                    bld.close();
+                    allClear();
+                    //Toast.makeText(getApplicationContext(),"Added",Toast.LENGTH_LONG).show();
+                    final Dialog dialog = new Dialog(LaptopActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.popup_window_addtocart);
 
-                //
+
+                    Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+                    dialogButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+                }
 
             }
         });
@@ -216,14 +243,17 @@ public class LaptopActivity extends AppCompatActivity {
                     case R.id.screenRadio1:
                         subcost = 0;
                         subcost = 0;
+                        screenSize = screenRadio1.getText().toString();
                         break;
                     case R.id.screenRadio2:
                         subcost = 0;
                         subcost = 0;
+                        screenSize = screenRadio2.getText().toString();
                         break;
                     case R.id.screenRadio3:
                         subcost = 0;
                         subcost = 0;
+                        screenSize = screenRadio3.getText().toString();
                         break;
                 }
                 cost1 =+ subcost;
@@ -237,14 +267,17 @@ public class LaptopActivity extends AppCompatActivity {
                     case R.id.displayRadio1:
                         subcost = 0;
                         subcost = 0;
+                        display = displayRadio1.getText().toString();
                         break;
                     case R.id.displayRadio2:
                         subcost = 0;
                         subcost = 0;
+                        display = displayRadio2.getText().toString();
                         break;
                     case R.id.displayRadio3:
                         subcost = 0;
                         subcost = 100;
+                        display = displayRadio3.getText().toString();
                         break;
                 }
                 cost1 =+ subcost;
@@ -259,10 +292,12 @@ public class LaptopActivity extends AppCompatActivity {
                     case R.id.stypeRadio1:
                         subcost = 0;
                         subcost = 150;
+                        screenType = stypeRadio1.getText().toString();
                         break;
                     case R.id.stypeRadio2:
                         subcost = 0;
                         subcost = 0;
+                        screenType = stypeRadio2.getText().toString();
                         break;
 
                 }
@@ -278,14 +313,17 @@ public class LaptopActivity extends AppCompatActivity {
                     case R.id.proRadio1:
                         subcost = 0;
                         subcost = 250;
+                        processor = proRadio1.getText().toString();
                         break;
                     case R.id.proRadio2:
                         subcost = 0;
                         subcost  = 300;
+                        processor = proRadio2.getText().toString();
                         break;
                     case R.id.proRadio3:
                         subcost = 0;
                         subcost = 320;
+                        processor = proRadio3.getText().toString();
                         break;
                 }
 
@@ -301,10 +339,12 @@ public class LaptopActivity extends AppCompatActivity {
                     case R.id.progenRadio1:
                         subcost = 0;
                         subcost = 0;
+                        processorgen = progenRadio1.getText().toString();
                         break;
                     case R.id.progenRadio2:
                         subcost = 0;
                         subcost =0;
+                        processorgen = progenRadio2.getText().toString();
                         break;
                 }
 
@@ -320,14 +360,17 @@ public class LaptopActivity extends AppCompatActivity {
                     case R.id.ramRadio1:
                         subcost = 0;
                         subcost = 80;
+                        ram = ramRadio1.getText().toString();
                         break;
                     case R.id.ramRadio2:
                         subcost = 0;
                         subcost  = 140;
+                        ram = ramRadio2.getText().toString();
                         break;
                     case R.id.ramRadio3:
                         subcost = 0;
                         subcost = 220;
+                        ram = ramRadio3.getText().toString();
                         break;
                 }
 
@@ -395,18 +438,22 @@ public class LaptopActivity extends AppCompatActivity {
                             case R.id.storage1:
                                 subcost = 0;
                                 subcost = 80;
+                                storage = storage1.getText().toString();
                                 break;
                             case R.id.storage2:
                                 subcost = 0;
                                 subcost  = 120;
+                                storage = storage2.getText().toString();
                                 break;
                             case R.id.storage3:
                                 subcost = 0;
                                 subcost = 200;
+                                storage = storage3.getText().toString();
                                 break;
                             case R.id.storage4:
                                 subcost = 0;
                                 subcost = 300;
+                                storage = storage4.getText().toString();
                                 break;
                         }
 
@@ -454,18 +501,22 @@ public class LaptopActivity extends AppCompatActivity {
                             case R.id.storage1:
                                 subcost = 0;
                                 subcost = 60;
+                                storage = storage1.getText().toString();
                                 break;
                             case R.id.storage2:
                                 subcost = 0;
                                 subcost  = 100;
+                                storage = storage2.getText().toString();
                                 break;
                             case R.id.storage3:
                                 subcost = 0;
                                 subcost = 150;
+                                storage = storage3.getText().toString();
                                 break;
                             case R.id.storage4:
                                 subcost = 0;
                                 subcost = 200;
+                                storage = storage4.getText().toString();
                                 break;
                         }
 
@@ -512,18 +563,22 @@ public class LaptopActivity extends AppCompatActivity {
                             case R.id.storage1:
                                 subcost = 0;
                                 subcost = 150;
+                                storage = storage1.getText().toString();
                                 break;
                             case R.id.storage2:
                                 subcost = 0;
                                 subcost  = 200;
+                                storage = storage2.getText().toString();
                                 break;
                             case R.id.storage3:
                                 subcost = 0;
                                 subcost = 250;
+                                storage = storage3.getText().toString();
                                 break;
                             case R.id.storage4:
                                 subcost = 0;
                                 subcost = 400;
+                                storage = storage4.getText().toString();
                                 break;
                         }
 
@@ -576,26 +631,32 @@ public class LaptopActivity extends AppCompatActivity {
                             case R.id.graphic1:
                                 subcost = 0;
                                 subcost = 300;
+                                graphic = graphic1.getText().toString();
                                 break;
                             case R.id.graphic2:
                                 subcost = 0;
                                 subcost  = 320;
+                                graphic = graphic2.getText().toString();
                                 break;
                             case R.id.graphic3:
                                 subcost = 0;
                                 subcost = 330;
+                                graphic = graphic3.getText().toString();
                                 break;
                             case R.id.graphic4:
                                 subcost = 0;
                                 subcost = 340;
+                                graphic = graphic4.getText().toString();
                                 break;
                             case R.id.graphic5:
                                 subcost = 0;
                                 subcost = 350;
+                                graphic = graphic5.getText().toString();
                                 break;
                             case R.id.graphic6:
                                 subcost = 0;
                                 subcost = 360;
+                                graphic = graphic6.getText().toString();
                                 break;
                         }
 
@@ -645,26 +706,32 @@ public class LaptopActivity extends AppCompatActivity {
                             case R.id.graphic1:
                                 subcost = 0;
                                 subcost = 300;
+                                graphic = graphic1.getText().toString();
                                 break;
                             case R.id.graphic2:
                                 subcost = 0;
                                 subcost  = 320;
+                                graphic = graphic2.getText().toString();
                                 break;
                             case R.id.graphic3:
                                 subcost = 0;
                                 subcost = 330;
+                                graphic = graphic3.getText().toString();
                                 break;
                             case R.id.graphic4:
                                 subcost = 0;
                                 subcost = 340;
+                                graphic = graphic4.getText().toString();
                                 break;
                             case R.id.graphic5:
                                 subcost = 0;
                                 subcost = 350;
+                                graphic = graphic5.getText().toString();
                                 break;
                             case R.id.graphic6:
                                 subcost = 0;
                                 subcost = 360;
+                                graphic = graphic6.getText().toString();
                                 break;
                         }
 
@@ -982,5 +1049,88 @@ public class LaptopActivity extends AppCompatActivity {
 //        }
 //
 //    }
+
+    public void allClear(){
+
+        cost=0;
+        screenRadio1.setChecked(false);
+        screenRadio2.setChecked(false);
+        screenRadio3.setChecked(false);
+        screenRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        screenRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        screenRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        screenRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+        screenRadio3.setTextColor(Color.parseColor("#2E86C1"));
+        screenRadio3.setBackgroundResource(R.drawable.radio_unchecked);
+
+        displayRadio1.setChecked(false);
+        displayRadio2.setChecked(false);
+        displayRadio3.setChecked(false);
+        displayRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        // displayRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        displayRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        // displayRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+        displayRadio3.setTextColor(Color.parseColor("#2E86C1"));
+        // displayRadio3.setBackgroundResource(R.drawable.radio_unchecked);
+
+        stypeRadio1.setChecked(false);
+        stypeRadio2.setChecked(false);
+        stypeRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        stypeRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        stypeRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        stypeRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+
+        proRadio1.setChecked(false);
+        proRadio2.setChecked(false);
+        proRadio3.setChecked(false);
+        proRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        // proRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        proRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        // proRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+        proRadio3.setTextColor(Color.parseColor("#2E86C1"));
+        //  proRadio3.setBackgroundResource(R.drawable.radio_unchecked);
+
+        progenRadio1.setChecked(false);
+        progenRadio2 .setChecked(false);
+        progenRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        // progenRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        progenRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        // progenRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+
+        ramRadio1.setChecked(false);
+        ramRadio2.setChecked(false);
+        ramRadio3.setChecked(false);
+        ramRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        //  ramRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        ramRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        //  ramRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+        ramRadio3.setTextColor(Color.parseColor("#2E86C1"));
+        //  ramRadio3.setBackgroundResource(R.drawable.radio_unchecked);
+
+        storage1.setChecked(false);
+        storage2.setChecked(false);
+        storage3.setChecked(false);
+        storage4.setChecked(false);
+        graphic1.setChecked(false);
+        graphic2.setChecked(false);
+        graphic3.setChecked(false);
+        graphic4.setChecked(false);
+        graphic5.setChecked(false);
+        graphic6.setChecked(false);
+        ssd.setTextColor(Color.parseColor("#2E86C1"));
+        ssd.setBackgroundResource(R.drawable.radio_unchecked);
+
+        hdd.setTextColor(Color.parseColor("#2E86C1"));
+        hdd.setBackgroundResource(R.drawable.radio_unchecked);
+
+        dual.setTextColor(Color.parseColor("#2E86C1"));
+        dual.setBackgroundResource(R.drawable.radio_unchecked);
+
+        nvidia.setTextColor(Color.parseColor("#2E86C1"));
+        nvidia.setBackgroundResource(R.drawable.radio_unchecked);
+
+        amd.setTextColor(Color.parseColor("#2E86C1"));
+        amd.setBackgroundResource(R.drawable.radio_unchecked);
+    }
 
 }

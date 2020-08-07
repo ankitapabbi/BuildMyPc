@@ -540,7 +540,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="Corsair AX850&#xA; Best PSU: Up to 850 Watts"
+                        android:text="Corsair AX850 Best PSU: Up to 850 Watts"
                         android:textSize="20sp"
                         android:layout_margin="5dp">
                     </RadioButton>
@@ -550,7 +550,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="Corsair AX1000&#xA; Best PSU: Up to 1,000 Watts"
+                        android:text="Corsair AX1000 Best PSU: Up to 1,000 Watts"
                         android:textSize="20sp"
                         android:layout_margin="5dp">
                     </RadioButton>
@@ -560,7 +560,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="Corsair AX1600i&#xA; Best PSU Above 1000 Watts"
+                        android:text="Corsair AX1600i Best PSU Above 1000 Watts"
                         android:textSize="20sp"
                         android:layout_margin="5dp">
                     </RadioButton>
@@ -712,7 +712,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="Corsair Carbide&#xA; Series CC-9011050-WW&#xA; Mid-Tower &#xA;Steel Gaming Case"
+                        android:text="Corsair Carbide Series CC-9011050-WW Mid-Tower &#xA;Steel Gaming Case"
                         android:textSize="20sp"
                         android:layout_margin="5dp">
                     </RadioButton>
@@ -722,7 +722,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="Circle CC 839&#xA; Professional Gaming Cabinet"
+                        android:text="Circle CC 839 Professional Gaming Cabinet"
                         android:textSize="20sp"
                         android:layout_margin="5dp">
                     </RadioButton>
@@ -732,7 +732,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimaryDark"
-                        android:text="Antec NX200&#xA; Mid Tower&#xA; Gaming Cabine"
+                        android:text="Antec NX200 Mid Tower Gaming Cabine"
                         android:textSize="20sp"
                         android:layout_margin="5dp">
                     </RadioButton>

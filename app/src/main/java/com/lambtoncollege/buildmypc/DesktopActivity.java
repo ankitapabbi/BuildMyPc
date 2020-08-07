@@ -2,6 +2,8 @@ package com.lambtoncollege.buildmypc;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -17,6 +19,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lambtoncollege.buildmypc.ui.cart.CartFragment;
+import com.lambtoncollege.buildmypc.utilities.BuildDesktopDatabase;
+
 public class DesktopActivity extends AppCompatActivity {
 
     RadioButton proRadio1, proRadio2, proRadio3, progenRadio1, progenRadio2, ramRadio1, ramRadio2, ramRadio3,
@@ -28,10 +33,17 @@ public class DesktopActivity extends AppCompatActivity {
     Button ssd, hdd, dual, nvidia, amd,clear,totalcost,cart,wishlist;
     int cost = 0,cost1,cost2,cost3,cost4,cost5,cost6,cost7,cost8;
 
+    String processor,processorgen,ram,storage,graphic,power,networ,cabinet;
+
+    BuildDesktopDatabase bdd;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_desktop);
+        bdd = new BuildDesktopDatabase(getApplicationContext());
+
+
         storageTypeText = (TextView) findViewById(R.id.storageTypeText);
         totalcost = (Button)findViewById(R.id.totalcost);
         cart = (Button)findViewById(R.id.cart);
@@ -205,6 +217,29 @@ public class DesktopActivity extends AppCompatActivity {
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Add to cart code
+                if(validationCheck()) {
+                    bdd.open();
+                    bdd.save(processor, processorgen, ram, storage, graphic, power, networ, cabinet);
+                    bdd.close();
+                    allClear();
+                    //Toast.makeText(getApplicationContext(),"Added",Toast.LENGTH_LONG).show();
+                    final Dialog dialog = new Dialog(DesktopActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.popup_window_addtocart);
+
+
+                    Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+                    dialogButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+                }
 
             }
         });
@@ -224,14 +259,17 @@ public class DesktopActivity extends AppCompatActivity {
                     case R.id.proRadio1:
                         subcost = 0;
                         subcost = 250;
+                        processor = proRadio1.getText().toString();
                         break;
                     case R.id.proRadio2:
                         subcost = 0;
                         subcost  = 300;
+                        processor = proRadio2.getText().toString();
                         break;
                     case R.id.proRadio3:
                         subcost = 0;
                         subcost = 320;
+                        processor = proRadio3.getText().toString();
                         break;
                 }
 
@@ -248,10 +286,12 @@ public class DesktopActivity extends AppCompatActivity {
                     case R.id.progenRadio1:
                         subcost = 0;
                         subcost = 0;
+                        processorgen = progenRadio1.getText().toString();
                         break;
                     case R.id.progenRadio2:
                         subcost = 0;
                         subcost =0;
+                        processorgen = progenRadio2.getText().toString();
                         break;
                 }
 
@@ -270,14 +310,17 @@ public class DesktopActivity extends AppCompatActivity {
                     case R.id.ramRadio1:
                         subcost = 0;
                         subcost = 80;
+                        ram = ramRadio1.getText().toString();
                         break;
                     case R.id.ramRadio2:
                         subcost = 0;
                         subcost  = 140;
+                        ram = ramRadio2.getText().toString();
                         break;
                     case R.id.ramRadio3:
                         subcost = 0;
                         subcost = 220;
+                        ram = ramRadio3.getText().toString();
                         break;
                 }
 
@@ -321,14 +364,17 @@ public class DesktopActivity extends AppCompatActivity {
                     case R.id.powerRadio1:
                         subcost = 0;
                         subcost = 0;
+                        power = powerRadio1.getText().toString();
                         break;
                     case R.id.powerRadio2:
                         subcost = 0;
                         subcost = 0;
+                        power = powerRadio2.getText().toString();
                         break;
                     case R.id.powerRadio3:
                         subcost = 0;
                         subcost = 0;
+                        power = powerRadio3.getText().toString();
                         break;
                 }
                 cost4 =+ subcost;
@@ -343,14 +389,17 @@ public class DesktopActivity extends AppCompatActivity {
                     case R.id.networkRadio1:
                         subcost = 0;
                         subcost = 0;
+                        networ = networkRadio1.getText().toString();
                         break;
                     case R.id.networkRadio2:
                         subcost = 0;
                         subcost = 0;
+                        networ = networkRadio2.getText().toString();
                         break;
                     case R.id.networkRadio3:
                         subcost = 0;
                         subcost = 0;
+                        networ = networkRadio3.getText().toString();
                         break;
                 }
                 cost5 =+ subcost;
@@ -366,14 +415,17 @@ public class DesktopActivity extends AppCompatActivity {
                     case R.id.cabinateRadio1:
                         subcost = 0;
                         subcost = 0;
+                        cabinet = cabinateRadio1.getText().toString();
                         break;
                     case R.id.cabinateRadio2:
                         subcost = 0;
                         subcost = 0;
+                        cabinet = cabinateRadio2.getText().toString();
                         break;
                     case R.id.cabinateRadio3:
                         subcost = 0;
                         subcost = 0;
+                        cabinet = cabinateRadio3.getText().toString();
                         break;
                 }
                 cost6 =+ subcost;
@@ -416,18 +468,22 @@ public class DesktopActivity extends AppCompatActivity {
                             case R.id.storage1:
                                 subcost = 0;
                                 subcost = 80;
+                                storage = storage1.getText().toString();
                                 break;
                             case R.id.storage2:
                                 subcost = 0;
                                 subcost  = 120;
+                                storage = storage2.getText().toString();
                                 break;
                             case R.id.storage3:
                                 subcost = 0;
                                 subcost = 200;
+                                storage = storage3.getText().toString();
                                 break;
                             case R.id.storage4:
                                 subcost = 0;
                                 subcost = 300;
+                                storage = storage4.getText().toString();
                                 break;
                         }
 
@@ -475,18 +531,22 @@ public class DesktopActivity extends AppCompatActivity {
                             case R.id.storage1:
                                 subcost = 0;
                                 subcost = 60;
+                                storage = storage1.getText().toString();
                                 break;
                             case R.id.storage2:
                                 subcost = 0;
                                 subcost  = 100;
+                                storage = storage2.getText().toString();
                                 break;
                             case R.id.storage3:
                                 subcost = 0;
                                 subcost = 150;
+                                storage = storage3.getText().toString();
                                 break;
                             case R.id.storage4:
                                 subcost = 0;
                                 subcost = 200;
+                                storage = storage4.getText().toString();
                                 break;
                         }
 
@@ -533,18 +593,22 @@ public class DesktopActivity extends AppCompatActivity {
                             case R.id.storage1:
                                 subcost = 0;
                                 subcost = 150;
+                                storage = storage1.getText().toString();
                                 break;
                             case R.id.storage2:
                                 subcost = 0;
                                 subcost  = 200;
+                                storage = storage2.getText().toString();
                                 break;
                             case R.id.storage3:
                                 subcost = 0;
                                 subcost = 250;
+                                storage = storage3.getText().toString();
                                 break;
                             case R.id.storage4:
                                 subcost = 0;
                                 subcost = 400;
+                                storage = storage4.getText().toString();
                                 break;
                         }
 
@@ -597,26 +661,32 @@ public class DesktopActivity extends AppCompatActivity {
                             case R.id.graphic1:
                                 subcost = 0;
                                 subcost = 300;
+                                graphic = graphic1.getText().toString();
                                 break;
                             case R.id.graphic2:
                                 subcost = 0;
                                 subcost  = 320;
+                                graphic = graphic2.getText().toString();
                                 break;
                             case R.id.graphic3:
                                 subcost = 0;
                                 subcost = 330;
+                                graphic = graphic3.getText().toString();
                                 break;
                             case R.id.graphic4:
                                 subcost = 0;
                                 subcost = 340;
+                                graphic = graphic4.getText().toString();
                                 break;
                             case R.id.graphic5:
                                 subcost = 0;
                                 subcost = 350;
+                                graphic = graphic5.getText().toString();
                                 break;
                             case R.id.graphic6:
                                 subcost = 0;
                                 subcost = 360;
+                                graphic = graphic6.getText().toString();
                                 break;
                         }
 
@@ -667,26 +737,32 @@ public class DesktopActivity extends AppCompatActivity {
                             case R.id.graphic1:
                                 subcost = 0;
                                 subcost = 300;
+                                graphic = graphic1.getText().toString();
                                 break;
                             case R.id.graphic2:
                                 subcost = 0;
                                 subcost  = 320;
+                                graphic = graphic2.getText().toString();
                                 break;
                             case R.id.graphic3:
                                 subcost = 0;
                                 subcost = 330;
+                                graphic = graphic3.getText().toString();
                                 break;
                             case R.id.graphic4:
                                 subcost = 0;
                                 subcost = 340;
+                                graphic = graphic4.getText().toString();
                                 break;
                             case R.id.graphic5:
                                 subcost = 0;
                                 subcost = 350;
+                                graphic = graphic5.getText().toString();
                                 break;
                             case R.id.graphic6:
                                 subcost = 0;
                                 subcost = 360;
+                                graphic = graphic6.getText().toString();
                                 break;
                         }
 
@@ -1023,4 +1099,89 @@ public class DesktopActivity extends AppCompatActivity {
 //
 //        }
 //    }
+
+    public void allClear(){
+        cost = 0;
+        proRadio1.setChecked(false);
+        proRadio2.setChecked(false);
+        proRadio3.setChecked(false);
+        proRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        //  proRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        proRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        //  proRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+        proRadio3.setTextColor(Color.parseColor("#2E86C1"));
+        // proRadio3.setBackgroundResource(R.drawable.radio_unchecked);
+
+        progenRadio1.setChecked(false);
+        progenRadio2 .setChecked(false);
+        progenRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        //progenRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        progenRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        // progenRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+
+        ramRadio1.setChecked(false);
+        ramRadio2.setChecked(false);
+        ramRadio3.setChecked(false);
+        ramRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        // ramRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        ramRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        // ramRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+        ramRadio3.setTextColor(Color.parseColor("#2E86C1"));
+        // ramRadio3.setBackgroundResource(R.drawable.radio_unchecked);
+
+        powerRadio1.setChecked(false);
+        powerRadio2.setChecked(false);
+        powerRadio3.setChecked(false);
+        powerRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        //powerRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        powerRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        // powerRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+        powerRadio3.setTextColor(Color.parseColor("#2E86C1"));
+        //powerRadio3.setBackgroundResource(R.drawable.radio_unchecked);
+
+        networkRadio1.setChecked(false);
+        networkRadio2.setChecked(false);
+        networkRadio3.setChecked(false);
+        networkRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        //networkRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        networkRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        //networkRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+        networkRadio3.setTextColor(Color.parseColor("#2E86C1"));
+        //networkRadio3.setBackgroundResource(R.drawable.radio_unchecked);
+
+        cabinateRadio1.setChecked(false);
+        cabinateRadio2.setChecked(false);
+        cabinateRadio3.setChecked(false);
+        cabinateRadio1.setTextColor(Color.parseColor("#2E86C1"));
+        //cabinateRadio1.setBackgroundResource(R.drawable.radio_unchecked);
+        cabinateRadio2.setTextColor(Color.parseColor("#2E86C1"));
+        // cabinateRadio2.setBackgroundResource(R.drawable.radio_unchecked);
+        cabinateRadio3.setTextColor(Color.parseColor("#2E86C1"));
+        //cabinateRadio3.setBackgroundResource(R.drawable.radio_unchecked);
+
+        storage1.setChecked(false);
+        storage2.setChecked(false);
+        storage3.setChecked(false);
+        storage4.setChecked(false);
+        graphic1.setChecked(false);
+        graphic2.setChecked(false);
+        graphic3.setChecked(false);
+        graphic4.setChecked(false);
+        graphic5.setChecked(false);
+        graphic6.setChecked(false);
+        ssd.setTextColor(Color.parseColor("#2E86C1"));
+        ssd.setBackgroundResource(R.drawable.radio_unchecked);
+
+        hdd.setTextColor(Color.parseColor("#2E86C1"));
+        hdd.setBackgroundResource(R.drawable.radio_unchecked);
+
+        dual.setTextColor(Color.parseColor("#2E86C1"));
+        dual.setBackgroundResource(R.drawable.radio_unchecked);
+
+        nvidia.setTextColor(Color.parseColor("#2E86C1"));
+        nvidia.setBackgroundResource(R.drawable.radio_unchecked);
+
+        amd.setTextColor(Color.parseColor("#2E86C1"));
+        amd.setBackgroundResource(R.drawable.radio_unchecked);
+    }
 }
