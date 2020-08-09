@@ -71,7 +71,7 @@
         />
 
     <LinearLayout
-        android:visibility="gone"
+        android:layout_margin="10dp"
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,8 +90,14 @@
 
 
     </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/brandsRecyler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
     <LinearLayout
-        android:visibility="gone"
+        android:layout_margin="10dp"
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -107,29 +113,14 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#7E7B7B"/>
-
-
     </LinearLayout>
-    <LinearLayout
-        android:visibility="gone"
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Assembled"
-            android:textColor="#7E7B7B"
-            android:textSize="20sp"/>
-        <View
-            android:layout_gravity="center"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/accRecyler"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#7E7B7B"/>
+            android:layout_height="wrap_content"
+            />
 
-
-    </LinearLayout>
     </LinearLayout>
     </ScrollView>
 </LinearLayout>

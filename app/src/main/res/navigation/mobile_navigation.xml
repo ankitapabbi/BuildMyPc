@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/nav_assembled"
         android:name="com.lambtoncollege.buildmypc.ui.assembled.AssembledFragment"
-        android:label="Assembled"
+        android:label="Accessories"
         tools:layout="@layout/fragment_assembled" />
 
     <fragment
