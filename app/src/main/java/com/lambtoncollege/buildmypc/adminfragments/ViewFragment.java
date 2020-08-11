@@ -1,6 +1,7 @@
 package com.lambtoncollege.buildmypc.adminfragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.lambtoncollege.buildmypc.R;
+import com.lambtoncollege.buildmypc.SignUp;
 import com.lambtoncollege.buildmypc.adapters.AdapterForAccessories;
 import com.lambtoncollege.buildmypc.adapters.AdapterForBrandPc;
 import com.lambtoncollege.buildmypc.model.Accessories;
@@ -46,6 +49,7 @@ public class ViewFragment extends Fragment {
     String itemname;
     String[] itemNames = {"Select The Type","Personal Computers","Accessories"};
     Spinner whatItem;
+    Button adminLogout;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -101,6 +105,7 @@ public class ViewFragment extends Fragment {
         bpd = new BrandPcDatabase(getContext());
 
         whatItem = (Spinner)layout.findViewById(R.id.whatitem);
+        adminLogout = (Button)layout.findViewById(R.id.adminLogoutBtn);
         ad = new AccessoriesDatabase(getContext());
 
         ArrayAdapter aa = new ArrayAdapter(getContext(),android.R.layout.simple_spinner_item,itemNames);
@@ -129,6 +134,15 @@ public class ViewFragment extends Fragment {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        adminLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SignUp.class);
+                startActivity(intent);
+                getActivity().finish();
             }
         });
 

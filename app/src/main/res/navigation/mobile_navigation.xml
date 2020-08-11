@@ -40,9 +40,15 @@
         android:name="com.lambtoncollege.buildmypc.ui.Brand.BrandFragment"
         android:label="Brand List"
         tools:layout="@layout/fragment_brand" />
+
     <fragment
-        android:id="@+id/nav_feedback"
-        android:name="com.lambtoncollege.buildmypc.ui.feedback.FeedbackFragment"
-        android:label="FeedBack"
-        tools:layout="@layout/feedback_fragment" />
+        android:id="@+id/nav_contactus"
+        android:name="com.lambtoncollege.buildmypc.ui.contactUs.ContacUsFragment"
+        android:label="Contact Us"
+        tools:layout="@layout/fragment_contac_us" />
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.lambtoncollege.buildmypc.ui.logout.LogoutFragment"
+        android:label="Personal Info"
+        tools:layout="@layout/fragment_logout" />
 </navigation>

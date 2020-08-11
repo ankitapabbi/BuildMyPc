@@ -1,6 +1,7 @@
 package com.lambtoncollege.buildmypc;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,7 +21,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 import com.lambtoncollege.buildmypc.ui.assembled.AssembledFragment;
+import com.lambtoncollege.buildmypc.ui.contactUs.ContacUsFragment;
 import com.lambtoncollege.buildmypc.ui.home.HomeFragment;
+import com.lambtoncollege.buildmypc.ui.logout.LogoutFragment;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -31,7 +34,8 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements LogoutFragment.OnFragmentInteractionListener,
+        ContacUsFragment.OnFragmentInteractionListener {
 
     TextView username,useremail;
     String name,email;
@@ -62,6 +66,8 @@ NavigationView navigationView;
 //        });
        drawer = findViewById(R.id.drawer_layout);
        navigationView = findViewById(R.id.nav_view);
+
+
         View header = navigationView.getHeaderView(0);
         username = (TextView)header.findViewById(R.id.username);
         useremail = (TextView)header.findViewById(R.id.useremail);
@@ -71,13 +77,30 @@ NavigationView navigationView;
         }
 
 
+
         // Passing each menu ID as radio_checked set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_assembled, R.id.nav_brandlist,
-                R.id.nav_cart, R.id.nav_wishlist, R.id.nav_aboutUs, R.id.nav_feedback)
+                R.id.nav_cart, R.id.nav_wishlist, R.id.nav_aboutUs, R.id.nav_logout)
                 .setDrawerLayout(drawer)
                 .build();
+
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                int id=menuItem.getItemId();
+//                //it's possible to do more actions on several items, if there is a large amount of items I prefer switch(){case} instead of if()
+//                if (id==R.id.nav_logout){
+//                    Toast.makeText(getApplicationContext(), "Logout", Toast.LENGTH_SHORT).show();
+//                }
+//                //This is for maintaining the behavior of the Navigation view
+//                //NavigationUI.onNavDestinationSelected(menuItem,navController);
+//                //This is for closing the drawer after acting on it
+//                //drawer.closeDrawer(GravityCompat.START);
+//                return true;
+//            }
+//        });
 
         navController = Navigation.findNavController(HomeActivity.this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(HomeActivity.this, navController, mAppBarConfiguration);
@@ -154,4 +177,8 @@ NavigationView navigationView;
     }
 
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }

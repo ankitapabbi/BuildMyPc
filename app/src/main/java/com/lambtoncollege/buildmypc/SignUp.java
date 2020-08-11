@@ -5,12 +5,14 @@ import androidx.percentlayout.widget.PercentLayoutHelper;
 import androidx.percentlayout.widget.PercentRelativeLayout;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -36,7 +38,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     UserDatabase udb;
 
     EditText lemail,lpassword,rname,remail,rphone,rpostal,raddress,rpassword;
-
+    CheckBox rememberMe;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -68,6 +71,17 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         rpostal = (EditText)findViewById(R.id.rpostal);
         raddress = (EditText)findViewById(R.id.raddress);
         rpassword = (EditText)findViewById(R.id.rpassword);
+        rememberMe = (CheckBox)findViewById(R.id.rememberMe);
+
+        sharedPreferences = getSharedPreferences("login",MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if(sharedPreferences.contains("userEmail")){
+            lemail.setText(sharedPreferences.getString("userEmail",""));
+            lpassword.setText(sharedPreferences.getString("userPassword",""));
+        }
+
+
 
         tvSignupInvoker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,35 +138,52 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             public void onClick(View view) {
                 // logic here.......
 
+
                 String email = lemail.getText().toString().trim();
                 String password = lpassword.getText().toString().trim();
+                if(rememberMe.isChecked() && !email.equalsIgnoreCase("admin")) {
+                    editor.putString("userEmail", email);
+                    editor.putString("userPassword", password);
 
-                if(email.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
+                    udb.open();
+                    List<UserData> data = udb.getUserByEmailPassword(email, password);
 
-                    Intent intent = new Intent(getApplicationContext(),HomeScreenForAdmin.class);
+                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                    intent.putExtra("name",data.get(0).getUserName());
+                    intent.putExtra("email",email);
                     startActivity(intent);
                     finish();
 
                 }else {
-                    udb.open();
-                    if (!email.equalsIgnoreCase("") && !password.equalsIgnoreCase("")) {
-                        List<UserData> data = udb.getUserByEmailPassword(email, password);
-                        if (data.isEmpty()) {
-                            Toast.makeText(getApplicationContext(), "Email Or Password Wrong", Toast.LENGTH_LONG).show();
-                        } else {
-                            //  Toast.makeText(getApplicationContext(), data.get(0).getUserEmail(), Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                            intent.putExtra("name", data.get(0).getUserName());
-                            intent.putExtra("email", data.get(0).getUserEmail());
-                            startActivity(intent);
-                            finish();
-                        }
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Fill All Details", Toast.LENGTH_LONG).show();
-                    }
-                    udb.close();
-                }
+                    editor.remove("userEmail");
+                    editor.remove("userPassword");
+                    if (email.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
 
+                        Intent intent = new Intent(getApplicationContext(), HomeScreenForAdmin.class);
+                        startActivity(intent);
+                        finish();
+
+                    } else {
+                        udb.open();
+                        if (!email.equalsIgnoreCase("") && !password.equalsIgnoreCase("")) {
+                            List<UserData> data = udb.getUserByEmailPassword(email, password);
+                            if (data.isEmpty()) {
+                                Toast.makeText(getApplicationContext(), "Email Or Password Wrong", Toast.LENGTH_LONG).show();
+                            } else {
+                                //  Toast.makeText(getApplicationContext(), data.get(0).getUserEmail(), Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                intent.putExtra("name", data.get(0).getUserName());
+                                intent.putExtra("email", data.get(0).getUserEmail());
+                                startActivity(intent);
+                                finish();
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Fill All Details", Toast.LENGTH_LONG).show();
+                        }
+                        udb.close();
+                    }
+                }
+                editor.apply();
 
             }
         });
