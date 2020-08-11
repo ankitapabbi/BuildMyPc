@@ -1,9 +1,13 @@
 package com.lambtoncollege.buildmypc.ui.Brand;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.lambtoncollege.buildmypc.ManageBrands;
 import com.lambtoncollege.buildmypc.R;
 import com.lambtoncollege.buildmypc.adapters.AdapterForBrandPc;
 import com.lambtoncollege.buildmypc.adapters.AdapterForBrandPcUser;
@@ -82,6 +87,17 @@ public class BrandFragment extends Fragment implements AdapterForBrands {
     public void toManage(int position, String name, String screen, String processor, String ram, String rom, String graphic, String warranty, int price) {
         // to manage brand pc
 
+        Intent intent = new Intent(getContext(),ManageBrands.class);
+        intent.putExtra("name",name);
+        intent.putExtra("screen",screen);
+        intent.putExtra("processor",processor);
+        intent.putExtra("ram",ram);
+        intent.putExtra("rom",rom);
+        intent.putExtra("graphic",graphic);
+        intent.putExtra("warranty",warranty);
+        intent.putExtra("price",price);
+        startActivity(intent);
+
 
     }
 
@@ -92,6 +108,20 @@ public class BrandFragment extends Fragment implements AdapterForBrands {
         bpdc.open();
         bpdc.save(name, screen, processor, ram, rom, graphic, warranty,price);
         bpdc.close();
-        Toast.makeText(getContext(), "PC Added", Toast.LENGTH_LONG).show();
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.popup_window_addtocart);
+
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.btn_dialog);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }

@@ -1,5 +1,6 @@
 package com.lambtoncollege.buildmypc;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,9 +28,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
+
+    TextView username,useremail;
+    String name,email;
 
     private AppBarConfiguration mAppBarConfiguration;
 NavigationView navigationView;
@@ -42,6 +47,11 @@ NavigationView navigationView;
         setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+       name=  intent.getStringExtra("name");
+        email = intent.getStringExtra("email");
+
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -52,6 +62,15 @@ NavigationView navigationView;
 //        });
        drawer = findViewById(R.id.drawer_layout);
        navigationView = findViewById(R.id.nav_view);
+        View header = navigationView.getHeaderView(0);
+        username = (TextView)header.findViewById(R.id.username);
+        useremail = (TextView)header.findViewById(R.id.useremail);
+        if(!name.equalsIgnoreCase("") && !email.equalsIgnoreCase("")) {
+            username.setText(name);
+            useremail.setText(email);
+        }
+
+
         // Passing each menu ID as radio_checked set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -60,9 +79,13 @@ NavigationView navigationView;
                 .setDrawerLayout(drawer)
                 .build();
 
-         navController = Navigation.findNavController(HomeActivity.this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(HomeActivity.this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(HomeActivity.this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
+
 
 //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 //            @Override

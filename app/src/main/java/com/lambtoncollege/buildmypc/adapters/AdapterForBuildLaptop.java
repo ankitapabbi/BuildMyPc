@@ -51,7 +51,7 @@ public class AdapterForBuildLaptop extends RecyclerView.Adapter<AdapterForBuildL
         holder.screenSize.setText(dataProvider.getScreenSize());
         holder.display.setText(dataProvider.getDisplay());
         holder.screentype.setText(dataProvider.getScreenType());
-        // holder.price.setText("\u0024 "+dataProvider.getBookPrice());
+        holder.thecost.setText("\u0024 "+dataProvider.getPrice());
 
 
 //        Glide.with(context).load("https://codeoptimizer.000webhostapp.com/"+dataProvider.getBookUrl()+".png").into(holder.bookImg);
@@ -72,7 +72,7 @@ public class AdapterForBuildLaptop extends RecyclerView.Adapter<AdapterForBuildL
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView screenSize, display, screentype,processorName,genName,ramName,storageName,graphicName;
+        TextView screenSize, display, screentype,processorName,genName,ramName,storageName,graphicName,thecost;
         ImageView desktopImg;
         LinearLayout deleteBook;
 
@@ -89,6 +89,7 @@ public class AdapterForBuildLaptop extends RecyclerView.Adapter<AdapterForBuildL
             screentype = (TextView)itemView.findViewById(R.id.screenType);
             desktopImg=(ImageView)itemView.findViewById(R.id.desktopImg);
             deleteBook = (LinearLayout)itemView.findViewById(R.id.deleteBook);
+            thecost = (TextView)itemView.findViewById(R.id.thecost);
 
         }
     }

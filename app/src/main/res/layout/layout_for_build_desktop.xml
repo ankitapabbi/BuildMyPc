@@ -41,12 +41,12 @@
                 android:textStyle="bold"
                 android:layout_marginRight="5dp"/>
             <TextView
-
+                android:id="@+id/thecost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="#000"
-                android:text="$ 900"/>
+                android:text="900"/>
         </LinearLayout>
     </LinearLayout>
 

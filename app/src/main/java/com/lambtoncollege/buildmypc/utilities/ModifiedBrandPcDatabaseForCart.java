@@ -6,67 +6,63 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.lambtoncollege.buildmypc.model.BuildDesktop;
-import com.lambtoncollege.buildmypc.model.BuildLaptop;
+import com.lambtoncollege.buildmypc.model.BrandPc;
+import com.lambtoncollege.buildmypc.model.ModifyBrandPc;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BuildLaptopDatabase {
+public class ModifiedBrandPcDatabaseForCart {
 
-    public static final String DB_Name="buildLaptop.db";
+    public static final String DB_Name="modifybrandpcforcart.db";
     public static final int DB_Ver=2;
-    public static final String DB_Table="Build_Laptop";
-    public static final String ScreenSize ="Screen_size";
-    public static final String Display="Display";
-    public static final String ScreenType="Screen_Type";
+    public static final String DB_Table="Brand_Pc";
+    public static final String Name="Name";
+    public static final String Screen_Size="Screen_Size";
     public static final String Processor="Processor";
-    public static final String ProcessorGen="Processor_Gen";
     public static final String RAM="RAM";
-    public static final String Storage="Storage";
+    public static final String ROM="ROM";
     public static final String GraphicCard="Graphic_Card";
-    public static final String Price = "Price";
+    public static final String Warranty="Warranty";
+    public static final String Price="Price";
     public static final String KEY_ID="id";
 
 
     //Query to create table
 
     public static final String Q_Create=
-            "CREATE TABLE "+DB_Table+"("+KEY_ID+" INTEGER PRIMARY KEY  AUTOINCREMENT,"+ScreenSize+" TEXT,"+Display+" TEXT,"+ScreenType+" TEXT,"+Processor+" TEXT, "+ProcessorGen+" TEXT, "+RAM+" TEXT, "+Storage+" TEXT, "+GraphicCard+" TEXT, "+Price+" TEXT)";
+            "CREATE TABLE "+DB_Table+"("+KEY_ID+" INTEGER PRIMARY KEY  AUTOINCREMENT,"+Name+" TEXT,"+Screen_Size+" TEXT, "+Processor+" TEXT, "+RAM+" TEXT, "+ROM+" TEXT, "+GraphicCard+" TEXT,"+Warranty+" TEXT,"+Price+" TEXT)";
 
     Context c;
-    private BuildLaptopDatabase.DBHelper dbHelper;
+    private ModifiedBrandPcDatabaseForCart.DBHelper dbHelper;
     private SQLiteDatabase database;
 
     //all database operation coded here
-    public BuildLaptopDatabase(Context context){
+    public ModifiedBrandPcDatabaseForCart(Context context){
         c = context;
 
     }
 
-    public BuildLaptopDatabase open() {
+    public ModifiedBrandPcDatabaseForCart open() {
 
-        dbHelper=new BuildLaptopDatabase.DBHelper(c);
+        dbHelper=new ModifiedBrandPcDatabaseForCart.DBHelper(c);
 
         database=dbHelper.getWritableDatabase();
 
         return this;
     }
 
-    public void save(String screenSize,String display,String screenType,
-                     String processor, String processorGen,String ram,
-                     String storage,String graphicCard, int price) {
+    public void save(String name,String screensize,String processor, String ram,
+                     String rom,String graphicCard,String warranty, int price) {
 
         ContentValues cv= new ContentValues();
-
-        cv.put(ScreenSize,screenSize);
-        cv.put(Display,display);
-        cv.put(ScreenType,screenType);
+        cv.put(Name,name);
+        cv.put(Screen_Size,screensize);
         cv.put(Processor,processor);
-        cv.put(ProcessorGen,processorGen);
         cv.put(RAM,ram);
-        cv.put(Storage,storage);
+        cv.put(ROM,rom);
         cv.put(GraphicCard,graphicCard);
+        cv.put(Warranty,warranty);
         cv.put(Price,price);
         database.insert(DB_Table,null,cv);
     }
@@ -75,37 +71,36 @@ public class BuildLaptopDatabase {
         database.close();
     }
 
-    public List<BuildLaptop> getBuildLaptopData()
+    public List<ModifyBrandPc> getBrandPcData()
     {
-        List<BuildLaptop> data= new ArrayList<>();
-        String[] columns={KEY_ID,ScreenSize,Display,ScreenType,Processor,ProcessorGen,RAM,Storage,GraphicCard,Price};
+        List<ModifyBrandPc> data= new ArrayList<>();
+        String[] columns={KEY_ID,Name,Screen_Size,Processor,RAM,ROM,GraphicCard,Warranty,Price};
         Cursor cursor=database.query(DB_Table,columns,null,null,null,null,null);
 
+        int iname = cursor.getColumnIndex(Name);
+        int iscreen = cursor.getColumnIndex(Screen_Size);
         int ip=cursor.getColumnIndex(Processor);
-        int ipgen=cursor.getColumnIndex(ProcessorGen);
         int iram=cursor.getColumnIndex(RAM);
-        int istorage=cursor.getColumnIndex(Storage);
+        int irom=cursor.getColumnIndex(ROM);
         int igraphic=cursor.getColumnIndex(GraphicCard);
-        int ibDeskId=cursor.getColumnIndex(KEY_ID);
-        int issize=cursor.getColumnIndex(ScreenSize);
-        int idisplay=cursor.getColumnIndex(Display);
-        int istype=cursor.getColumnIndex(ScreenType);
-        int iprice = cursor.getColumnIndex(Price);
+        int ibandId=cursor.getColumnIndex(KEY_ID);
+        int iwarranty=cursor.getColumnIndex(Warranty);
+        int iprice=cursor.getColumnIndex(Price);
+
 
         for(cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext()){
-            BuildLaptop desktop = new BuildLaptop();
-            desktop.setProcessor(cursor.getString(ip));
-            desktop.setProcessorGen(cursor.getString(ipgen));
-            desktop.setRam(cursor.getString(iram));
-            desktop.setStorageType(cursor.getString(istorage));
-            desktop.setGraphicCard(cursor.getString(igraphic));
-            desktop.setBuildLaptopID(cursor.getString(ibDeskId));
-            desktop.setScreenSize(cursor.getString(issize));
-            desktop.setDisplay(cursor.getString(idisplay));
-            desktop.setScreenType(cursor.getString(istype));
-            desktop.setPrice(cursor.getInt(iprice));
+            ModifyBrandPc brand = new ModifyBrandPc();
+            brand.setName(cursor.getString(iname));
+            brand.setScreenSize(cursor.getString(iscreen));
+            brand.setProcessor(cursor.getString(ip));
+            brand.setRam(cursor.getString(iram));
+            brand.setRom(cursor.getString(irom));
+            brand.setGraphics(cursor.getString(igraphic));
+            brand.setBrandPcID(cursor.getString(ibandId));
+            brand.setWarranty(cursor.getString(iwarranty));
+            brand.setPrice(cursor.getInt(iprice));
 
-            data.add(desktop);
+            data.add(brand);
         }
         return data;
     }

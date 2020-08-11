@@ -51,7 +51,7 @@ public class AdapterForBuildDesktop extends RecyclerView.Adapter<AdapterForBuild
         holder.powerName.setText(dataProvider.getPowerSupply());
         holder.networkName.setText(dataProvider.getNetworkCard());
         holder.cabinetName.setText(dataProvider.getCabinet());
-       // holder.price.setText("\u0024 "+dataProvider.getBookPrice());
+       holder.thecost.setText("\u0024 "+dataProvider.getPrice());
 
 
 //        Glide.with(context).load("https://codeoptimizer.000webhostapp.com/"+dataProvider.getBookUrl()+".png").into(holder.bookImg);
@@ -72,7 +72,7 @@ public class AdapterForBuildDesktop extends RecyclerView.Adapter<AdapterForBuild
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView processorName,genName,ramName,storageName,graphicName,powerName,networkName,cabinetName;
+        TextView processorName,genName,ramName,storageName,graphicName,powerName,networkName,cabinetName,thecost;
         ImageView desktopImg;
         LinearLayout deleteBook;
 
@@ -89,6 +89,7 @@ public class AdapterForBuildDesktop extends RecyclerView.Adapter<AdapterForBuild
             cabinetName = (TextView)itemView.findViewById(R.id.cabinetName);
             desktopImg=(ImageView)itemView.findViewById(R.id.desktopImg);
             deleteBook = (LinearLayout)itemView.findViewById(R.id.deleteBook);
+            thecost = (TextView)itemView.findViewById(R.id.thecost);
 
         }
     }

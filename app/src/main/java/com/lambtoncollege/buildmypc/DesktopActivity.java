@@ -219,8 +219,9 @@ public class DesktopActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Add to cart code
                 if(validationCheck()) {
+                    cost = cost1 + cost2 + cost3 + cost4 + cost5 + cost6 + cost7 + cost8;
                     bdd.open();
-                    bdd.save(processor, processorgen, ram, storage, graphic, power, networ, cabinet);
+                    bdd.save(processor, processorgen, ram, storage, graphic, power, networ, cabinet,cost);
                     bdd.close();
                     allClear();
                     //Toast.makeText(getApplicationContext(),"Added",Toast.LENGTH_LONG).show();

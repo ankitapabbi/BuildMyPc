@@ -204,8 +204,9 @@ public class LaptopActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Add to cart code
                 if(validationCheck()) {
+                    cost = cost1 + cost2 + cost3 + cost4 + cost5 + cost6 + cost7 + cost8;
                     bld.open();
-                    bld.save(screenSize,display,screenType,processor, processorgen, ram, storage, graphic);
+                    bld.save(screenSize,display,screenType,processor, processorgen, ram, storage, graphic,cost);
                     bld.close();
                     allClear();
                     //Toast.makeText(getApplicationContext(),"Added",Toast.LENGTH_LONG).show();

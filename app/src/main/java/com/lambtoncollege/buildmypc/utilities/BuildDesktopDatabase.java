@@ -24,13 +24,14 @@ public class BuildDesktopDatabase{
         public static final String PowerSupply="Power_Supply";
         public static final String NetworkCard="Network_Card";
         public static final String Cabinet="Cabinet";
+        public static final String Price = "Price";
         public static final String KEY_ID="id";
 
 
         //Query to create table
 
         public static final String Q_Create=
-                "CREATE TABLE "+DB_Table+"("+KEY_ID+" INTEGER PRIMARY KEY  AUTOINCREMENT,"+Processor+" TEXT, "+ProcessorGen+" TEXT, "+RAM+" TEXT, "+Storage+" TEXT, "+GraphicCard+" TEXT,"+PowerSupply+" TEXT,"+NetworkCard+" TEXT,"+Cabinet+" TEXT)";
+                "CREATE TABLE "+DB_Table+"("+KEY_ID+" INTEGER PRIMARY KEY  AUTOINCREMENT,"+Processor+" TEXT, "+ProcessorGen+" TEXT, "+RAM+" TEXT, "+Storage+" TEXT, "+GraphicCard+" TEXT,"+PowerSupply+" TEXT,"+NetworkCard+" TEXT,"+Cabinet+" TEXT,"+Price+" TEXT)";
 
         Context c;
         private DBHelper dbHelper;
@@ -53,7 +54,7 @@ public class BuildDesktopDatabase{
 
         public void save(String processor, String processorGen,String ram,
                          String storage,String graphicCard,String powerSupply,
-                         String networkCard,String cabinet) {
+                         String networkCard,String cabinet, int price) {
 
             ContentValues cv= new ContentValues();
             cv.put(Processor,processor);
@@ -64,6 +65,7 @@ public class BuildDesktopDatabase{
             cv.put(PowerSupply,powerSupply);
             cv.put(NetworkCard,networkCard);
             cv.put(Cabinet,cabinet);
+            cv.put(Price,price);
             database.insert(DB_Table,null,cv);
         }
 
@@ -74,7 +76,7 @@ public class BuildDesktopDatabase{
         public List<BuildDesktop> getBuildDesktopData()
         {
             List<BuildDesktop> data= new ArrayList<>();
-            String[] columns={KEY_ID,Processor,ProcessorGen,RAM,Storage,GraphicCard,PowerSupply,NetworkCard,Cabinet};
+            String[] columns={KEY_ID,Processor,ProcessorGen,RAM,Storage,GraphicCard,PowerSupply,NetworkCard,Cabinet,Price};
             Cursor cursor=database.query(DB_Table,columns,null,null,null,null,null);
 
             int ip=cursor.getColumnIndex(Processor);
@@ -86,6 +88,7 @@ public class BuildDesktopDatabase{
             int inetwork=cursor.getColumnIndex(NetworkCard);
             int ipower=cursor.getColumnIndex(PowerSupply);
             int icabinet=cursor.getColumnIndex(Cabinet);
+            int iprice = cursor.getColumnIndex(Price);
 
             for(cursor.moveToFirst();!cursor.isAfterLast();cursor.moveToNext()){
                 BuildDesktop desktop = new BuildDesktop();
@@ -98,6 +101,7 @@ public class BuildDesktopDatabase{
                 desktop.setNetworkCard(cursor.getString(inetwork));
                 desktop.setPowerSupply(cursor.getString(ipower));
                 desktop.setCabinet(cursor.getString(icabinet));
+                desktop.setPrice(cursor.getInt(iprice));
 
                 data.add(desktop);
             }
